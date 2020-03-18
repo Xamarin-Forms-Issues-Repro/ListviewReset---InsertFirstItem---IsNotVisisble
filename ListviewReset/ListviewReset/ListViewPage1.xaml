@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ListviewReset.ListViewPage1">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Text="ListView" HorizontalOptions="Center"/>
+
+            <ListView Grid.Row="1"
+                      ItemsSource="{Binding ListViewItems}"
+                      CachingStrategy="RecycleElement" HasUnevenRows="True">
+                <!--Built in Cells-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="50">
+                            <Frame BorderColor="Red" Margin="0" Padding="1">
+                                <Label Text="{Binding .}" />
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Grid.Row="2" Text="AddRange" Command="{Binding ListViewAddRangeCommand}" />
+            <Button Grid.Row="3" Text="InsertFirst" Command="{Binding ListViewInsertFirstCommand}" />
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Text="CollectionView" HorizontalOptions="Center"/>
+
+            <CollectionView 
+                      Grid.Row="1"
+                      ItemsSource="{Binding CollectionViewItems}">
+                      <!--Built in Cells-->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView HeightRequest="50">
+                            <Frame BorderColor="Red" Margin="0" Padding="1">
+                                <Label Text="{Binding .}" />
+                            </Frame>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Grid.Row="2" Text="AddRange" Command="{Binding CollectionViewAddRangeCommand}" />
+            <Button Grid.Row="3" Text="InsertFirst" Command="{Binding CollectionViewInsertFirstCommand}" />
+        </Grid>
+    </Grid>
+</ContentPage>
